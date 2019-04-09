@@ -94,9 +94,7 @@ def _concat_arrays(arrays, padding):
 
     xp = cuda.get_array_module(arrays[0])
     with cuda.get_device_from_array(arrays[0]):
-        # batch内で系列長が異なる時エラー
         return xp.concatenate([array[None] for array in arrays])
-        # return xp.concatenate(arrays, axis=0)
 
 def _concat_arrays_with_padding(arrays, padding):
     shape = np.array(arrays[0].shape, dtype=int)

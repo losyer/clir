@@ -24,15 +24,6 @@ class RankingEvaluator(extensions.Evaluator):
         self.epoch_num = 1
 
     def evaluate(self):
-        """Evaluates the model and returns a result dictionary.
-        This method runs the evaluation loop over the validation dataset. It
-        accumulates the reported values to :class:`~chainer.DictSummary` and
-        returns a dictionary whose values are means computed by the summary.
-        Users can override this method to customize the evaluation routine.
-        Returns:
-            dict: Result dictionary. This dictionary is further reported via
-                :func:`~chainer.report` without specifying any observer.
-        """
         # iterator = self._iterators['main']
         target = self._targets['main']
         eval_func = self.eval_func or target
@@ -55,9 +46,7 @@ class RankingEvaluator(extensions.Evaluator):
         pre_rate = 0
         for batch in it:
             observation = {}
-            # trainでない時には、別処理をする分岐がNetwork.py内に必要
             with reporter_module.report_scope(observation):
-                # 1インスタンスごとのスコアをリストに格納
                 
                 xs1, xs2, xs3, y = self.converter(batch, device=self.device)
                 y_score, first_rel_score, second_rel_score = target.predictor(xs1, xs2, xs3)
@@ -65,7 +54,6 @@ class RankingEvaluator(extensions.Evaluator):
                 loss = F.hinge(x=y_score, t=y).data
                 reporter_module.report({'loss_test': loss}, target)
 
-                # P@Nなどのためにscoreをリストに格納
                 score_first += first_rel_score.data.flatten().tolist()
                 score_second += second_rel_score.data.flatten().tolist()
 
@@ -85,9 +73,7 @@ class RankingEvaluator(extensions.Evaluator):
         pre_rate = 0
         for batch in it:
             observation = {}
-            # trainでない時には、別処理をする分岐がNetwork.py内に必要
             with reporter_module.report_scope(observation):
-                # 1インスタンスごとのスコアをリストに格納
                 xs1, xs2, xs3, y = self.converter(batch, device=self.device)
                 y_score, first_rel_score, second_rel_score = target.predictor(xs1, xs2, xs3)
 
@@ -110,7 +96,6 @@ class RankingEvaluator(extensions.Evaluator):
                 score.append(s)
             current_position += t
 
-        # p@N, MAP, nDCGのためのスコア書き込み
         with open(self.score_abs_dest+"/score_epoch{}.txt".format(self.epoch_num),"w") as fo:
             for s in score:
                 fo.write("{}\n".format(s))

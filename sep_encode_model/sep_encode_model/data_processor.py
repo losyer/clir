@@ -73,7 +73,6 @@ class DataProcessor(object):
             if self.sub_sample_train:
                 data_limit = self.sub_sample_data_limit
             # data_limit = 20
-            # bug: data_limit = 24など少なすぎると指定したepochまで回らず止まる
         elif _type == "dev":
             path = self.dev_data_path
         elif _type == "test":

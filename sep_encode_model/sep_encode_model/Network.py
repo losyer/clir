@@ -14,7 +14,7 @@ RS = np.random.RandomState(0)
 def embed_seq_batch(embed, seq_batch, dropout=0.):
     xs_f = []
     for x in seq_batch:
-        x = embed(x) # Word IndexからWord Embeddingに変換
+        x = embed(x)
         x = F.dropout(x, ratio=dropout) 
         xs_f.append(x)
     return xs_f
@@ -191,7 +191,7 @@ class Network_deep(Chain):
             lstm_d=L.NStepLSTM(n_layers=1, in_size=self.embed_dim, out_size=self.embed_dim, dropout=0.5),
             conv_q=L.Convolution2D(in_channels=1, out_channels=self.cnn_out_channels, ksize=(self.cnn_ksize, self.embed_dim)),
             conv_d=L.Convolution2D(in_channels=1, out_channels=self.cnn_out_channels, ksize=(self.cnn_ksize, self.embed_dim)),
-            l1=L.Linear(in_size=self.embed_dim*2, out_size=self.n_hdim),
+            l1=L.Linear(in_size=self.cnn_out_channels*2, out_size=self.n_hdim),
             l2=L.Linear(in_size=self.n_hdim, out_size=self.n_hdim),
             l3=L.Linear(in_size=self.n_hdim, out_size=self.n_hdim),
             l4=L.Linear(in_size=self.n_hdim, out_size=self.n_hdim),
