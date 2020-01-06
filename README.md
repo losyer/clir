@@ -17,7 +17,7 @@
 ### How to train
 
 ```
-$ src/train.py \
+$ src/train.py
 ```
 
   
