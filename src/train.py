@@ -16,8 +16,8 @@ np.random.seed(0)
 import argparse
 chainer.config.cudnn_deterministic = True
 
-from sep_encode_model import Network, Network_deep, DataProcessor, RankingEvaluator
-from sep_encode_model import converter_for_lstm, concat_examples
+from model import Network, Network_deep, DataProcessor, RankingEvaluator
+from model import converter_for_lstm, concat_examples
 from datetime import datetime
 import cPickle, json
 
@@ -32,7 +32,7 @@ def main(args):
     start_time = datetime.now().strftime('%Y%m%d_%H_%M_%S')
     if args.test:
         start_time = "test_" + start_time
-    result_dest = HOME + "/clir/sep_encode_model/result/"+start_time
+    result_dest = HOME + "/clir/model/result/"+start_time
     result_abs_dest = os.path.abspath(result_dest)
     if not args.extract_parameter:
         os.makedirs(result_dest)
@@ -46,12 +46,12 @@ def main(args):
     vocab_d = data_processor.vocab_d
 
     if args.create_vocabulary:
-        print 'dump'
+        print('dump')
         with open(args.vocab_path+"en_{}_vocab_for_index.txt".format(args.doc_lang),"wb") as f_q,\
              open(args.vocab_path+"{}_vocab_for_index.txt".format(args.doc_lang),'wb') as f_d:
             cPickle.dump(dict(vocab_q), f_q)
             cPickle.dump(dict(vocab_d), f_d)
-        print 'done'
+        print('done')
 
     # model setup
     if args.deep:
@@ -91,15 +91,15 @@ def main(args):
 
     model_path = '/'.join(args.model_path.split('/')[0:-1])+'/'
     model_epoch = args.model_path.split('/')[-1].split('_')[-1]
-    print 'model path = ',model_path
+    print('model path = ',model_path)
 
     if args.load_snapshot:
-        print "loading snapshot..."
+        print("loading snapshot...")
         serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), trainer)
-        print 'done'
+        print('done')
 
     if args.extract_parameter:
-        print 'extract parameter...'
+        print('extract parameter...')
         serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), trainer)
         if args.deep:
             p1 = model.predictor.l1
@@ -112,11 +112,11 @@ def main(args):
             serializers.save_npz(model_path+"l4.npz", p4)
         p5 = model.predictor.conv_q
         serializers.save_npz(model_path+"conv_q.npz", p5)
-        print 'done'
+        print('done')
         exit()
 
     if args.load_parameter:
-        print "loading parameter..."
+        print("loading parameter...")
         if args.deep:
             p1 = model.predictor.l1
             p2 = model.predictor.l2
@@ -128,7 +128,7 @@ def main(args):
             serializers.load_npz(model_path+ "l4.npz", p4)
         p5 = model.predictor.conv_q
         serializers.load_npz(model_path+ "conv_q.npz", p5)
-        print 'done'
+        print('done')
 
     # Evaluation setup
     iters = {"dev": dev_iter, "test": test_iter}
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
     # data path
     parser.add_argument('--vocab_path', dest='vocab_path', type=str, default=HOME+"/clir/vocab/")
-    parser.add_argument('--data_path', dest='data_path', type=str,default="/export/a13/shota/clir/")
+    parser.add_argument('--data_path', dest='data_path', type=str,default="/path/")
     parser.add_argument('--vec_path', dest='vec_path', type=str, default=HOME+"/word2vec/trunk/")
     parser.add_argument('--model_path', dest='model_path', type=str, default='')
     args = parser.parse_args()
