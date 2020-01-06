@@ -1,5 +1,6 @@
 # Cross-lingual Learning-to-Rank
-- This repository is about *Cross-lingual Learning-to-Rank with Shared Representations. Shota Sasaki, Shuo Sun, Shigehiko Schamoni, Kevin Duh and Kentaro Inui. NAACL2019*
+- This repository is about *Cross-lingual Learning-to-Rank with Shared Representations. Shota Sasaki, Shuo Sun, Shigehiko Schamoni, Kevin Duh and Kentaro Inui. NAACL2018*
+  - https://www.aclweb.org/anthology/N18-2073/
 
 ## Table of contents
   - [Usage](#usage)
@@ -10,7 +11,7 @@
 ## Usage
 
 ### Requirements
-- Python version >= 2.7
+- Python ver 2.7
 - chainer
 - numpy
 
