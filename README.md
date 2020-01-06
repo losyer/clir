@@ -1,5 +1,5 @@
 # Cross-lingual Learning-to-Rank
-- This repository is about *Cross-lingual Learning-to-Rank with Shared Representations. Shota Sasaki, Shuo Sun, Shigehiko Schamoni, Kevin Duh and Kentaro Inui. NAACL2019*
+- This repository is about *Cross-lingual Learning-to-Rank with Shared Representations. Shota Sasaki, Shuo Sun, Shigehiko Schamoni, Kevin Duh and Kentaro Inui. NAACL201*
 
 ## Table of contents
   - [Usage](#usage)
