@@ -171,7 +171,7 @@ if __name__ == '__main__':
     parser.add_argument('--extract_parameter', action='store_true', help='')
 
     # model parameter
-    parser.add_argument('--n_layer', dest='n_layer', type=int, default=2, help='# of layer')
+    parser.add_argument('--n_layer', dest='n_layer', type=int, default=1, help='# of layer')
     parser.add_argument('--n_hdim', dest='n_hdim', type=int, default=200, help='dimension of hidden layer')
     parser.add_argument('--vocab_size', dest='vocab_size', type=int, default=100000, help='')
     parser.add_argument('--cnn_out_channels', dest='cnn_out_channels', type=int, default=100, help='')
