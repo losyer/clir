@@ -24,7 +24,7 @@ class DataProcessor_for_inference(object):
              open(args.vocab_path+"/{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
             self.vocab_q = cPickle.load(f_q)
             self.vocab_d = cPickle.load(f_d)
-        logging.info("loading vocabulary from cPickle dump ... dump")
+        logging.info("loading vocabulary from cPickle dump ... done")
 
         self.device = args.gpu
         self.encode_type = args.encode_type
