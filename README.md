@@ -26,7 +26,7 @@ $ python src/inference.py \
 --n_hdim [for_feed_forward_layer]
 ```
 
-### Resource
+## Resource
 See https://github.com/losyer/clir/tree/master/resource
 
   
