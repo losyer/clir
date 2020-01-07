@@ -26,6 +26,22 @@ $ python src/inference.py \
 --n_hdim [for_feed_forward_layer]
 ```
 
+For example,
+```
+$ cd resource
+$ wget https://github.com/losyer/clir/releases/download/results_v1.0/sw.tar.gz
+$ tar -zxvf sw.tar.gz
+$ wget https://github.com/losyer/clir/releases/download/vocab_v1.0/vocabulary.zip
+$ unzip vocabulary.zip
+
+$ python src/inference.py \
+--vocab_path resource/vocabulary \
+--model_path resource/sw/in_language/deep_model_100/model_epoch_1 \
+--data_path resource/input_examples/train_l100.txt \
+--doc_lang sw \
+--n_hdim 100
+```
+
 ## Resource
 See https://github.com/losyer/clir/tree/master/resource
 
