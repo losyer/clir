@@ -18,7 +18,7 @@
 
 ### How to inference
 ```
-$ src/inference.py \
+$ python src/inference.py \
 --vocab_path [path_to_vocaburaly_directory] \
 --model_path [path_to_model_snapshot] \
 --data_path [path_to_target_data] \
