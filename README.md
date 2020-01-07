@@ -9,6 +9,8 @@
   - [Resources](#resources)
 
 
+## Usage
+
 ### Requirements
 - Python ver. 2.7
 - chainer==5.4.0
