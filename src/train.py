@@ -19,7 +19,8 @@ chainer.config.cudnn_deterministic = True
 from model import Network, Network_deep, DataProcessor, RankingEvaluator
 from model import converter_for_lstm, concat_examples
 from datetime import datetime
-import cPickle, json
+import cPickle
+import json
 
 def main(args):
     if args.gpu >= 0:
@@ -68,7 +69,7 @@ def main(args):
         cuda.get_device(args.gpu).use()
         model.to_gpu()
 
-        # optimizer setup
+    # optimizer setup
     if args.optimizer == "adagrad":
         optimizer = O.AdaGrad(lr=0.05)
     else:
@@ -91,12 +92,15 @@ def main(args):
 
     model_path = '/'.join(args.model_path.split('/')[0:-1])+'/'
     model_epoch = args.model_path.split('/')[-1].split('_')[-1]
-    print('model path = ',model_path)
+    print('model path = ' + model_path + 'model_epoch_{}'.format(model_epoch))
 
     if args.load_snapshot:
         print("loading snapshot...")
+        from IPython.core.debugger import Pdb; Pdb().set_trace()
         serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), trainer)
+        # serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), model, path='updater/model:main/')
         print('done')
+        exit()
 
     if args.extract_parameter:
         print('extract parameter...')
@@ -139,7 +143,6 @@ def main(args):
     trainer.extend(extensions.PrintReport(['epoch', 'main/loss', 'validation/main/loss_dev', 'validation/main/loss_test']))
     trainer.extend(extensions.ProgressBar(update_interval=10))
 
-    # if not args.test:
     trainer.extend(extensions.snapshot(filename='model_epoch_{.updater.epoch}'),
         trigger=chainer.training.triggers.MinValueTrigger('validation/main/loss_dev'))
 

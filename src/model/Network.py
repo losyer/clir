@@ -7,8 +7,8 @@ import chainer.links as L
 from chainer import cuda
 from chainer import Chain
 from chainer import Variable as V
-from util import cos_sim
-from my_func import EmbedID_minus_pad
+from .util import cos_sim
+from .my_func import EmbedID_minus_pad
 RS = np.random.RandomState(0)
 
 def embed_seq_batch(embed, seq_batch, dropout=0.):
@@ -54,7 +54,7 @@ class Network(Chain):
             assert False
         assert embed != None
 
-        print "loading", _type, "vector..."
+        print("loading", _type, "vector...")
         with open(vec_path, "r") as fi:
             for n, line in enumerate(fi):
                 # 1st line contains stats
@@ -66,7 +66,7 @@ class Network(Chain):
                     value = line.strip().split(" ")[1::]
                     vec = self.xp.array(value, dtype=self.xp.float32)
                     embed.W.data[vocab[word]] = vec
-        print "done"
+        print("done")
 
     def pad_vec2zero(self, vocab, _type):
         if _type == "query":
@@ -116,7 +116,7 @@ class Network(Chain):
             h_doc_rel = F.reshape(h_doc_rel, (batchsize2, self.embed_dim))
             h_doc_nonrel = F.reshape(h_doc_nonrel, (batchsize3, self.embed_dim))
         else:
-            print "Error: encode_type is invalid"
+            print("Error: encode_type is invalid")
             exit()
 
         # calculate similarity
@@ -209,7 +209,7 @@ class Network_deep(Chain):
             assert False
         assert embed != None
 
-        print "loading", _type, "vector..." 
+        print("loading", _type, "vector...")
         with open(vec_path, "r") as fi:
             for n, line in enumerate(fi):
                 # 1st line contains stats
@@ -221,7 +221,7 @@ class Network_deep(Chain):
                     value = line.strip().split(" ")[1::]
                     vec = self.xp.array(value, dtype=self.xp.float32)
                     embed.W.data[vocab[word]] = vec
-        print "done"
+        print("done")
 
     def pad_vec2zero(self, vocab, _type):
         if _type == "query":
@@ -273,7 +273,7 @@ class Network_deep(Chain):
             h_doc_rel = F.reshape(h_doc_rel, (batchsize2, self.embed_dim))
             h_doc_nonrel = F.reshape(h_doc_nonrel, (batchsize3, self.embed_dim))
         else:
-            print "Error: encode_type is invalid"
+            print("Error: encode_type is invalid")
             exit()
 
         concat_feature_rel = F.concat([h_query, h_doc_rel], axis=1)

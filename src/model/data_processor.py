@@ -23,10 +23,10 @@ class DataProcessor(object):
 
         # Vocabulary for sentence pairs
         # word2vec vocabulary: vocab outside this will be considered as <unk>
-        print "loading vocabulary..."
+        print("loading vocabulary...")
         self.word2vec_vocab_q = self.load_vocab(args.vocab_path+"vocab_enwiki.txt", args.vocab_size)
         self.word2vec_vocab_d = self.load_vocab(args.vocab_path+"vocab_"+args.doc_lang+"wiki.txt", args.vocab_size)
-        print "done"
+        print("done")
 
         if args.create_vocabulary:
             self.vocab_q = defaultdict(lambda: len(self.vocab_q))
@@ -36,12 +36,12 @@ class DataProcessor(object):
             self.vocab_d["<pad>"]
             self.vocab_d["<unk>"]
         else:
-            print 'load vocab from cPickle'
+            print('load vocab from cPickle')
             with open(args.vocab_path+"en_{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_q,\
                  open(args.vocab_path+"{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
                 self.vocab_q = cPickle.load(f_q)
                 self.vocab_d = cPickle.load(f_d)
-            print 'done'
+            print('done')
 
         self.device = args.gpu
         self.encode_type = args.encode_type
@@ -55,14 +55,14 @@ class DataProcessor(object):
 
     def prepare_dataset(self):
         # load train/dev/test data
-        print "loading dataset..."
+        print("loading dataset...")
         self.train_data, _ = self.load_dataset_for_neg_sampled_data("train")
         self.dev_data, self.n_dev_qd_pairs   = self.load_dataset_for_neg_sampled_data("dev")
         self.test_data, self.n_test_qd_pairs  = self.load_dataset_for_neg_sampled_data("test")
 
         if self.test:
-            print "tiny dataset for quick test..."
-        print "done"
+            print("tiny dataset for quick test...")
+        print("done")
 
     def load_dataset_for_neg_sampled_data(self, _type):
 

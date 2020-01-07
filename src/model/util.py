@@ -75,7 +75,7 @@ def concat_examples(batch, device=None, padding=0):
         return tuple(result)
 
     elif isinstance(first_elem, dict):
-        print "挙動を理解していないのでこちらに入ったらError"
+        print("not impremented")
         assert False 
         exit()
         result = {}
