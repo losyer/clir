@@ -6,7 +6,7 @@
   - [Usage](#usage)
     - [Requirements](#requirements)
     - [How to inference](#how-to-inference)
-  - [Resources](#resources)
+  - [Resource](#resource)
 
 
 ## Usage
