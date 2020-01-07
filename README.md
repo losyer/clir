@@ -12,8 +12,8 @@
 
 ### Requirements
 - Python ver 2.7
-- chainer
-- numpy
+- chainer==5.4.0
+- numpy==1.15.0
 
 ### How to train
 
