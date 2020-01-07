@@ -32,7 +32,7 @@ def main(args):
     start_time = datetime.now().strftime('%Y%m%d_%H_%M_%S')
     if args.test:
         start_time = "test_" + start_time
-    result_dest = HOME + "/clir/model/result/"+start_time
+    result_dest = args.result_dir + '/' + start_time
     result_abs_dest = os.path.abspath(result_dest)
     if not args.extract_parameter:
         os.makedirs(result_dest)
@@ -183,6 +183,8 @@ if __name__ == '__main__':
     parser.add_argument('--data_path', dest='data_path', type=str,default="/path/")
     parser.add_argument('--vec_path', dest='vec_path', type=str, default=HOME+"/word2vec/trunk/")
     parser.add_argument('--model_path', dest='model_path', type=str, default='')
+
+    parser.add_argument('--result_dir', type=str, default='')
     args = parser.parse_args()
     main(args)
 
