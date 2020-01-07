@@ -33,6 +33,7 @@ $ wget https://github.com/losyer/clir/releases/download/results_v1.0/sw.tar.gz
 $ tar -zxvf sw.tar.gz
 $ wget https://github.com/losyer/clir/releases/download/vocab_v1.0/vocabulary.zip
 $ unzip vocabulary.zip
+$ cd ..
 
 $ python src/inference.py \
 --vocab_path resource/vocabulary \
