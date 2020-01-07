@@ -149,44 +149,45 @@ def main(args):
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--gpu  ', dest='gpu', type=int,default=-1, help='negative value indicates CPU')
+    parser.add_argument('--gpu  ', type=int,default=-1, help='negative value indicates CPU')
 
     # training parameter
-    parser.add_argument('--epoch', dest='epoch', type=int,default=5, help='number of epochs to learn')
-    parser.add_argument('--batchsize', dest='batchsize', type=int,default=32, help='learning minibatch size')
-    parser.add_argument('--doc_lang', dest='doc_lang', type=str, default="ja")
-    parser.add_argument('--encode_type', dest='encode_type', type=str, default="cnn")
+    parser.add_argument('--epoch', type=int,default=5)
+    parser.add_argument('--batchsize', type=int,default=32)
+    parser.add_argument('--doc_lang', type=str, default="ja")
+    # parser.add_argument('--doc_lang', choices=['ja', 'de', 'fr', 'tl', 'sw'])
+    parser.add_argument('--encode_type', type=str, default="cnn")
     parser.add_argument('--op', dest='optimizer', type=str, default="adam")
     parser.add_argument('--sub_sample_data_limit', type=int, default=31716, help='')
 
     # training flag
-    parser.add_argument('--deep', action='store_true', help='')
-    parser.add_argument('--load_embedding', action='store_true', help='')
-    parser.add_argument('--load_parameter', action='store_true', help='')
-    parser.add_argument('--load_snapshot', action='store_true', help='')
-    parser.add_argument('--weighted_sum', action='store_true', help='')
-    parser.add_argument('--sub_sample_train', action='store_true', help='')
+    parser.add_argument('--deep', action='store_true')
+    parser.add_argument('--load_embedding', action='store_true')
+    parser.add_argument('--load_parameter', action='store_true')
+    parser.add_argument('--load_snapshot', action='store_true')
+    parser.add_argument('--weighted_sum', action='store_true')
+    parser.add_argument('--sub_sample_train', action='store_true')
     parser.add_argument('--test', action='store_true', help='use tiny dataset')
 
     # other flag
-    parser.add_argument('--create_vocabulary', action='store_true', help='')
-    parser.add_argument('--extract_parameter', action='store_true', help='')
+    parser.add_argument('--create_vocabulary', action='store_true')
+    parser.add_argument('--extract_parameter', action='store_true')
 
     # model parameter
-    parser.add_argument('--n_layer', dest='n_layer', type=int, default=1, help='# of layer')
+    parser.add_argument('--n_layer' type=int, default=1)
         
-    parser.add_argument('--vocab_size', dest='vocab_size', type=int, default=100000, help='')
-    parser.add_argument('--cnn_out_channels', dest='cnn_out_channels', type=int, default=100, help='')
-    parser.add_argument('--cnn_ksize', dest='cnn_ksize', type=int, default=4, help='')
-    parser.add_argument('--embed_dim', dest='embed_dim', type=int, default=100, help='# of layer')
+    parser.add_argument('--vocab_size', type=int, default=100000)
+    parser.add_argument('--cnn_out_channels', type=int, default=100)
+    parser.add_argument('--cnn_ksize', type=int, default=4)
+    parser.add_argument('--embed_dim', type=int, default=100)
 
     # data path
-    parser.add_argument('--vocab_path', dest='vocab_path', type=str, default=HOME+"/clir/vocab/")
-    parser.add_argument('--data_path', dest='data_path', type=str,default="/path/")
-    parser.add_argument('--vec_path', dest='vec_path', type=str, default=HOME+"/word2vec/trunk/")
-    parser.add_argument('--model_path', dest='model_path', type=str, default='')
+    parser.add_argument('--vocab_path', type=str)
+    parser.add_argument('--data_path', type=str)
+    parser.add_argument('--vec_path', type=str)
+    parser.add_argument('--model_path', type=str)
 
-    parser.add_argument('--result_dir', type=str, default='')
+    parser.add_argument('--result_dir', type=str)
     args = parser.parse_args()
     main(args)
 
