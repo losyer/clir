@@ -10,7 +10,7 @@
 ## Usage
 
 ### Requirements
-- Python ver 2.7
+- Python ver. 2.7
 - chainer==5.4.0
 - numpy==1.15.0
 
