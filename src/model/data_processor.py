@@ -24,8 +24,8 @@ class DataProcessor(object):
         # Vocabulary for sentence pairs
         # word2vec vocabulary: vocab outside this will be considered as <unk>
         print("loading vocabulary...")
-        self.word2vec_vocab_q = self.load_vocab(args.vocab_path+"vocab_enwiki.txt", args.vocab_size)
-        self.word2vec_vocab_d = self.load_vocab(args.vocab_path+"vocab_"+args.doc_lang+"wiki.txt", args.vocab_size)
+        self.word2vec_vocab_q = self.load_vocab(args.vocab_path+"/vocab_enwiki.txt", args.vocab_size)
+        self.word2vec_vocab_d = self.load_vocab(args.vocab_path+"/vocab_"+args.doc_lang+"wiki.txt", args.vocab_size)
         print("done")
 
         if args.create_vocabulary:
@@ -37,8 +37,8 @@ class DataProcessor(object):
             self.vocab_d["<unk>"]
         else:
             print('load vocab from cPickle')
-            with open(args.vocab_path+"en_{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_q,\
-                 open(args.vocab_path+"{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
+            with open(args.vocab_path+"/en_{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_q,\
+                 open(args.vocab_path+"/{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
                 self.vocab_q = cPickle.load(f_q)
                 self.vocab_d = cPickle.load(f_d)
             print('done')

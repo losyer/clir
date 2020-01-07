@@ -15,13 +15,13 @@ class DataProcessor_for_inference(object):
         # Vocabulary for sentence pairs
         # word2vec vocabulary: vocab outside this will be considered as <unk>
         logging.info("loading w2v vocabulary ...")
-        self.word2vec_vocab_q = self.load_vocab(args.vocab_path+"vocab_enwiki.txt", args.vocab_size)
-        self.word2vec_vocab_d = self.load_vocab(args.vocab_path+"vocab_"+args.doc_lang+"wiki.txt", args.vocab_size)
+        self.word2vec_vocab_q = self.load_vocab(args.vocab_path+"/vocab_enwiki.txt", args.vocab_size)
+        self.word2vec_vocab_d = self.load_vocab(args.vocab_path+"/vocab_"+args.doc_lang+"wiki.txt", args.vocab_size)
         logging.info("loading w2v vocabulary ... done")
 
         logging.info("loading vocabulary from cPickle dump ...")
-        with open(args.vocab_path+"en_{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_q,\
-             open(args.vocab_path+"{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
+        with open(args.vocab_path+"/en_{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_q,\
+             open(args.vocab_path+"/{}_vocab_for_index.txt".format(args.doc_lang),"rb") as f_d:
             self.vocab_q = cPickle.load(f_q)
             self.vocab_d = cPickle.load(f_d)
         logging.info("loading vocabulary from cPickle dump ... dump")
