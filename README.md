@@ -5,7 +5,6 @@
 ## Table of contents
   - [Usage](#usage)
     - [Requirements](#requirements)
-    - [How to train](#how-to-train)
 
 
 ## Usage
@@ -15,11 +14,7 @@
 - chainer==5.4.0
 - numpy==1.15.0
 
-### How to train
 
-```
-$ src/train.py
-```
 
   
 
