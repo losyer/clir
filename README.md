@@ -12,9 +12,9 @@
 ## Usage
 
 ### Requirements
-- Python ver. 2.7
-- chainer==5.4.0
-- numpy==1.15.0
+- Python version 2.7
+- chainer == 5.4.0
+- numpy == 1.15.0
 
 ### How to inference
 ```
@@ -37,7 +37,7 @@ $ cd ..
 
 $ python src/inference.py \
 --vocab_path resource/vocabulary \
---model_path resource/sw/in_language/deep_model_100/model_epoch_1 \
+--model_path resource/sw/in_language/deep_model_100/model_epoch_19 \
 --data_path resource/input_examples/train_l100.txt \
 --doc_lang sw \
 --n_hdim 100
