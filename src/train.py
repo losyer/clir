@@ -96,7 +96,6 @@ def main(args):
 
     if args.load_snapshot:
         print("loading snapshot...")
-        from IPython.core.debugger import Pdb; Pdb().set_trace()
         serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), trainer)
         # serializers.load_npz(model_path +'model_epoch_{}'.format(model_epoch), model, path='updater/model:main/')
         print('done')
@@ -175,7 +174,7 @@ if __name__ == '__main__':
 
     # model parameter
     parser.add_argument('--n_layer', dest='n_layer', type=int, default=1, help='# of layer')
-    parser.add_argument('--n_hdim', dest='n_hdim', type=int, default=200, help='dimension of hidden layer')
+        
     parser.add_argument('--vocab_size', dest='vocab_size', type=int, default=100000, help='')
     parser.add_argument('--cnn_out_channels', dest='cnn_out_channels', type=int, default=100, help='')
     parser.add_argument('--cnn_ksize', dest='cnn_ksize', type=int, default=4, help='')
