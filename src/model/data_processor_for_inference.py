@@ -45,7 +45,7 @@ class DataProcessor_for_inference(object):
 
         with open(self.test_data_path, "r") as input_data:
             for i, line in enumerate(input_data):
-                rel, query, doc = line.strip().split("\t")
+                _, query, doc = line.strip().split("\t")
 
                 # convert text data to index data as numpy array
                 arg1, arg2 = [], []
