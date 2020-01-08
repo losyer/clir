@@ -38,7 +38,7 @@ $ cd ..
 $ python src/inference.py \
 --vocab_path resource/vocabulary \
 --model_path resource/sw/in_language/deep_model_100/model_epoch_19 \
---data_path resource/input_examples/train_l100.txt \
+--data_path resource/input_examples/train_sw_l100.txt \
 --doc_lang sw \
 --n_hdim 100
 ```
